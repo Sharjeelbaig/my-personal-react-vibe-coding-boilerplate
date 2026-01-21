@@ -9,7 +9,8 @@ src/
 ├── components/ui/    # Reusable UI components
 ├── features/         # Feature modules (created as needed)
 ├── lib/             # Utilities and shared logic
-│   ├── supabase.ts  # Database client
+│   ├── firebase.ts  # Auth client
+│   ├── api.ts       # API wrapper
 │   └── hooks/       # Shared custom hooks
 └── App.tsx          # Root component
 
@@ -33,7 +34,8 @@ prompts/
 - React 18 + TypeScript
 - Vite for building
 - Tailwind CSS for styling
-- Supabase for backend (database, auth, storage)
+- Hono + PGLite for backend
+- Firebase for authentication
 
 ## Getting Started
 
@@ -44,8 +46,9 @@ npm install
 
 2. Set up environment variables in `.env`:
 ```
-VITE_SUPABASE_URL=your_supabase_url
-VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+VITE_FIREBASE_API_KEY=your_firebase_api_key
+VITE_FIREBASE_AUTH_DOMAIN=your_firebase_auth_domain
+VITE_FIREBASE_PROJECT_ID=your_firebase_project_id
 ```
 
 3. Start development server:
@@ -79,6 +82,6 @@ This template includes comprehensive guides in `/prompts` to help AI assistants 
 
 - Minimal by default
 - Feature-based organization
-- Supabase-first for backend
+- API-first backend (Hono + PGLite)
 - Type-safe with TypeScript
 - No unnecessary abstractions

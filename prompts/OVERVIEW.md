@@ -59,7 +59,8 @@ project/
 - **Frontend**: React 18 + TypeScript
 - **Build Tool**: Vite
 - **Styling**: Tailwind CSS
-- **Backend**: Supabase (PostgreSQL + Auth + Storage)
+- **Backend**: Hono + PGLite (embedded Postgres)
+- **Auth**: Firebase Authentication
 - **State**: React Hooks + Context API
 
 ## When to Use This Template
@@ -67,7 +68,7 @@ project/
 Perfect for:
 - MVPs and prototypes
 - AI-assisted development
-- Full-stack apps with Supabase
+- Full-stack apps with custom backend
 - Projects needing clear structure
 
 Not ideal for:

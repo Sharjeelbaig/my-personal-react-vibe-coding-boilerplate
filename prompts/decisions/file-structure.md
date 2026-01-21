@@ -13,7 +13,8 @@ src/
 │       ├── hooks/       # Feature-specific hooks
 │       └── index.tsx    # Feature entry point
 ├── lib/
-│   ├── supabase.ts      # Supabase client
+│   ├── firebase.ts      # Auth client
+│   ├── api.ts           # API wrapper
 │   └── hooks/           # Shared custom hooks
 └── App.tsx              # Root component
 ```

@@ -16,7 +16,7 @@ src/features/todos/
 ### 2. Custom Hook (useTodos.ts)
 ```tsx
 import { useState, useEffect } from 'react';
-import { supabase } from '../../../lib/supabase';
+import { api } from '../../../lib/api';
 
 interface Todo {
   id: string;
@@ -34,34 +34,19 @@ export function useTodos() {
   }, []);
 
   async function fetchTodos() {
-    const { data, error } = await supabase
-      .from('todos')
-      .select('*')
-      .order('created_at', { ascending: false });
-
+    const data = await api.get<Todo[]>('/api/todos');
     if (data) setTodos(data);
     setLoading(false);
   }
 
   async function addTodo(title: string) {
-    const { data, error } = await supabase
-      .from('todos')
-      .insert({ title, completed: false })
-      .select()
-      .single();
-
+    const data = await api.post<Todo>('/api/todos', { title, completed: false });
     if (data) setTodos([data, ...todos]);
   }
 
   async function toggleTodo(id: string, completed: boolean) {
-    const { error } = await supabase
-      .from('todos')
-      .update({ completed })
-      .eq('id', id);
-
-    if (!error) {
-      setTodos(todos.map(t => t.id === id ? { ...t, completed } : t));
-    }
+    await api.put(`/api/todos/${id}`, { completed });
+    setTodos(todos.map(t => t.id === id ? { ...t, completed } : t));
   }
 
   return { todos, loading, addTodo, toggleTodo };

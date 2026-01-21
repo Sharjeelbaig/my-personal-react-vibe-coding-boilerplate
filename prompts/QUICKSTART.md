@@ -47,7 +47,8 @@ Add migration in `server/index.ts` startup
 
 ## Key Files
 
-- `src/lib/supabase.ts` - Database client
+- `src/lib/firebase.ts` - Auth client
+- `src/lib/api.ts` - API wrapper
 - `src/components/ui/` - Reusable components (Button, Input, Card)
 - `src/features/` - Feature modules (created as needed)
 - `prompts/` - Documentation for you and AI assistants
@@ -56,6 +57,6 @@ Add migration in `server/index.ts` startup
 
 - Keep it minimal
 - Feature-based organization
-- Supabase for all backend needs
+- API-first backend (Hono + Firebase)
 - No unnecessary packages
 - TypeScript for type safety

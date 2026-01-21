@@ -24,8 +24,8 @@ src/
 │       ├── login.tsx
 │       └── register.tsx
 └── lib/
-    ├── supabase.ts            # Supabase client
-    ├── api.ts                 # API wrapper (if needed)
+    ├── firebase.ts            # Auth client
+    ├── api.ts                 # API wrapper
     ├── types/                 # Shared types
     │   └── database.ts
     └── hooks/                 # Shared hooks
@@ -41,7 +41,7 @@ src/
 | Feature code | `src/features/[name]/` |
 | Shared hooks | `src/lib/hooks/` |
 | Types | `src/lib/types/` |
-| API clients | `src/lib/` |
+| firebase.ts, api.ts | `src/lib/` |
 | Global CSS | `src/index.css` |
 
 ## Naming
