@@ -3,6 +3,10 @@
   "module": "index.ts",
   "type": "module",
   "private": true,
+  "scripts": {
+    "dev": "mkdir -p data/pgdata && bun index.ts",
+    "start": "mkdir -p data/pgdata && bun index.ts"
+  },
   "devDependencies": {
     "@types/bun": "latest"
   },
