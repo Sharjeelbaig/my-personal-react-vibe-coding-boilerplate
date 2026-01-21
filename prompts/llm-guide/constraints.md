@@ -4,7 +4,7 @@
 - React 18+
 - TypeScript strict mode
 - Tailwind CSS only (no other styling solutions)
-- Supabase for backend
+- Firebase for auth, PGLite + Hono for backend
 - iconoir-react for icons (import from "iconoir-react")
 - Vite as build tool
 

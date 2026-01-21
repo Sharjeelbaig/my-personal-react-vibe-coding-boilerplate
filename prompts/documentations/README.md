@@ -14,9 +14,10 @@ Quick guides for LLMs working with this template.
 - [STATE.md](STATE.md) - State management patterns
 - [ROUTING.md](ROUTING.md) - React Router setup
 
-## Data & APIs
-- [SUPABASE.md](SUPABASE.md) - Database queries, auth
-- [API.md](API.md) - Third-party API integration
+## Data & Auth
+- [AUTH.md](AUTH.md) - Firebase authentication
+- [DATABASE.md](DATABASE.md) - PGLite + Hono API
+- [API.md](API.md) - API client usage
 
 ## Standards
 - [FILE-STRUCTURE.md](FILE-STRUCTURE.md) - Where to put files

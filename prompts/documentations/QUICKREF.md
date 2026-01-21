@@ -14,8 +14,11 @@ import { AuthLayout } from "@/components/layouts/AuthLayout";
 // Icons
 import { Search, Plus, Xmark, Menu, Check } from "iconoir-react";
 
-// Supabase
-import { supabase } from "@/lib/supabase";
+// Auth
+import { auth } from "@/lib/firebase";
+
+// API
+import { api } from "@/lib/api";
 ```
 
 ## Color Tokens
@@ -70,23 +73,18 @@ import { supabase } from "@/lib/supabase";
 <Card padding="none">None</Card>
 ```
 
-## Supabase
+## API
 ```tsx
-// Select
-const { data } = await supabase.from("table").select("*");
+const data = await api.get<User[]>("/api/users");
+await api.post("/api/users", { email, name });
+await api.delete("/api/users/123");
+```
 
-// Insert
-await supabase.from("table").insert({ field: value });
-
-// Update
-await supabase.from("table").update({ field: value }).eq("id", id);
-
-// Delete
-await supabase.from("table").delete().eq("id", id);
-
-// Auth
-await supabase.auth.signInWithPassword({ email, password });
-await supabase.auth.signOut();
+## Auth (Firebase)
+```tsx
+import { signInWithEmailAndPassword, signOut } from "firebase/auth";
+await signInWithEmailAndPassword(auth, email, password);
+await signOut(auth);
 ```
 
 ## State

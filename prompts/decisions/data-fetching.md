@@ -1,34 +1,27 @@
 # Data Fetching Decisions
 
 ## Primary Method
-- **Supabase Client** for all database operations
-- Direct queries from components using `supabase.from()`
-- Real-time subscriptions when live updates are needed
+- **API Client** for all database operations via Hono server
+- Server uses PGLite (embedded Postgres)
+- Firebase for authentication
 
 ## Pattern
 - Create custom hooks in `/src/lib/hooks/` for data fetching logic
 - Handle loading and error states explicitly
-- Use `maybeSingle()` for optional single row queries
-- Use `single()` only when row existence is guaranteed
+- Use `api.get()`, `api.post()`, `api.delete()` from `@/lib/api`
 
 ## Example
 ```tsx
-// Custom hook
+import { api } from "@/lib/api";
+
 export function useTodos() {
   const [todos, setTodos] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function fetchTodos() {
-      const { data, error } = await supabase
-        .from('todos')
-        .select('*')
-        .order('created_at', { ascending: false });
-
-      if (data) setTodos(data);
-      setLoading(false);
-    }
-    fetchTodos();
+    api.get("/api/todos")
+      .then(setTodos)
+      .finally(() => setLoading(false));
   }, []);
 
   return { todos, loading };

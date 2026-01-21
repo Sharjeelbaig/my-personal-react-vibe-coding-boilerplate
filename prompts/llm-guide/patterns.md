@@ -21,23 +21,18 @@ export default function Component({ title, onAction }: ComponentProps) {
 
 ## Custom Hook Pattern
 ```tsx
+import { api } from "@/lib/api";
+
 export function useResource() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    async function fetch() {
-      try {
-        const result = await supabase.from('table').select();
-        setData(result.data);
-      } catch (err) {
-        setError(err);
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetch();
+    api.get("/api/resource")
+      .then(setData)
+      .catch(setError)
+      .finally(() => setLoading(false));
   }, []);
 
   return { data, loading, error };
@@ -58,25 +53,19 @@ export default function TodosFeature() {
 }
 ```
 
-## Supabase Query Pattern
+## API Query Pattern
 ```tsx
-// Single row (optional)
-const { data, error } = await supabase
-  .from('users')
-  .select('*')
-  .eq('id', userId)
-  .maybeSingle();
+import { api } from "@/lib/api";
 
-// Multiple rows
-const { data, error } = await supabase
-  .from('todos')
-  .select('*')
-  .order('created_at', { ascending: false });
+// GET list
+const users = await api.get<User[]>("/api/users");
 
-// Insert
-const { data, error } = await supabase
-  .from('todos')
-  .insert({ title, completed: false })
-  .select()
-  .single();
+// GET single
+const user = await api.get<User>("/api/users/123");
+
+// POST
+const newTodo = await api.post<Todo>("/api/todos", { title });
+
+// DELETE
+await api.delete("/api/todos/123");
 ```

@@ -20,7 +20,7 @@ mkdir -p src/features/todos/components src/features/todos/hooks
 ```tsx
 // src/features/todos/hooks/useTodos.ts
 import { useState, useEffect } from "react";
-import { supabase } from "@/lib/supabase";
+import { api } from "@/lib/api";
 
 interface Todo {
   id: string;
@@ -34,28 +34,15 @@ export function useTodos() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    async function fetch() {
-      const { data, error } = await supabase
-        .from("todos")
-        .select("*")
-        .order("created_at", { ascending: false });
-      
-      if (error) setError(error.message);
-      else setTodos(data || []);
-      setLoading(false);
-    }
-    fetch();
+    api.get<Todo[]>("/api/todos")
+      .then(setTodos)
+      .catch((e) => setError(e.message))
+      .finally(() => setLoading(false));
   }, []);
 
   async function addTodo(title: string) {
-    const { data, error } = await supabase
-      .from("todos")
-      .insert({ title, completed: false })
-      .select()
-      .single();
-    
-    if (data) setTodos([data, ...todos]);
-    return { data, error };
+    const todo = await api.post<Todo>("/api/todos", { title });
+    setTodos([todo, ...todos]);
   }
 
   return { todos, loading, error, addTodo };

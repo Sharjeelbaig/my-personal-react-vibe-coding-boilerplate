@@ -38,14 +38,12 @@ Pattern: State management + effects + return object
 
 ### Query Database
 ```tsx
-const { data, error } = await supabase
-  .from('table_name')
-  .select('*')
-  .order('created_at', { ascending: false });
+import { api } from "@/lib/api";
+const todos = await api.get<Todo[]>("/api/todos");
 ```
 
 ### Create Database Table
-Requires migration via Supabase (see data-fetching.md)
+Add migration in `server/index.ts` startup
 
 ## Key Files
 

@@ -9,7 +9,7 @@ A minimal React + TypeScript template optimized for AI-assisted development. It 
 1. **Minimal by Default** - Only add what you need when you need it
 2. **Feature-Based** - Organize by feature, not technical layers
 3. **AI-Friendly** - Clear patterns and extensive documentation for LLMs
-4. **Supabase-First** - Backend handled by Supabase (database, auth, storage)
+4. **API-First** - Backend via Hono + PGLite, auth via Firebase
 5. **Type-Safe** - TypeScript for catching errors early
 
 ## Directory Structure
@@ -21,7 +21,7 @@ project/
 │   │   ├── styling.md      # Tailwind CSS approach
 │   │   ├── state.md        # React hooks + Context
 │   │   ├── routing.md      # Add router when needed
-│   │   ├── data-fetching.md # Supabase patterns
+│   │   ├── data-fetching.md # API + PGLite patterns
 │   │   └── file-structure.md # Feature-based org
 │   ├── llm-guide/          # Guides for AI coding
 │   │   ├── rules.md        # Core principles
@@ -44,7 +44,8 @@ project/
 │   │       ├── hooks/
 │   │       └── index.tsx
 │   ├── lib/
-│   │   ├── supabase.ts   # Database client
+│   │   ├── firebase.ts   # Auth client
+│   │   ├── api.ts        # API client
 │   │   ├── hooks/        # Shared hooks
 │   │   └── types/        # TypeScript types
 │   ├── App.tsx           # Root component

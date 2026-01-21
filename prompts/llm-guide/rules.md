@@ -4,7 +4,7 @@
 1. **Minimal by default** - Only add what's needed
 2. **Feature-based** - Group by feature, not technical layer
 3. **Explicit over implicit** - Clear naming, no magic
-4. **Supabase-first** - Use Supabase for data, auth, storage
+4. **API-first** - Use Hono API for data, Firebase for auth
 
 ## Code Generation Rules
 

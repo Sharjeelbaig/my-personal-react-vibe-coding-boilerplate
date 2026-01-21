@@ -72,10 +72,11 @@ export default function ValidatedForm() {
 }
 ```
 
-## Login Form with Supabase
+## Login Form with Firebase
 ```tsx
 import { useState } from "react";
-import { supabase } from "@/lib/supabase";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "@/lib/firebase";
 import { AuthLayout } from "@/components/layouts/AuthLayout";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
@@ -91,8 +92,11 @@ export default function LoginForm() {
     setError("");
     setLoading(true);
 
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
-    if (error) setError(error.message);
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Login failed");
+    }
     
     setLoading(false);
   }
