@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 
 interface AuthLayoutProps {
   children: ReactNode;
@@ -13,7 +13,7 @@ export function AuthLayout({ children, image }: AuthLayoutProps) {
           {children}
         </div>
       </div>
-      <div className="relative flex-1 hidden w-0 lg:block bg-custom-accent/20">
+      <div className="relative flex-1 hidden w-0 lg:block bg-accent/20">
         {image}
       </div>
     </div>

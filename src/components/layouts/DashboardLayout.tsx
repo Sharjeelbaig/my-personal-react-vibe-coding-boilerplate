@@ -1,5 +1,5 @@
 import { ReactNode, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, Xmark } from "iconoir-react";
 
 interface DashboardLayoutProps {
   children: ReactNode;
@@ -17,13 +17,13 @@ export function DashboardLayout({ children, sidebarContent }: DashboardLayoutPro
           <div className="flex h-14 items-center justify-between px-4 border-b">
             <span className="font-bold">Dashboard</span>
             <button onClick={() => setIsOpen(false)} className="lg:hidden">
-              <X size={20} />
+              <Xmark width={20} height={20} />
             </button>
           </div>
           <div className="flex-1 overflow-y-auto p-4">
             {sidebarContent}
           </div>
-          <footer className="p-4 border-t text-xs text-muted-foreground">
+          <footer className="p-4 border-t text-caption text-muted-foreground">
             © 2026 Dashboard
           </footer>
         </div>
@@ -33,7 +33,7 @@ export function DashboardLayout({ children, sidebarContent }: DashboardLayoutPro
       <div className="flex flex-1 flex-col min-w-0">
         <header className="flex h-14 items-center gap-4 border-b bg-background px-6">
           <button onClick={() => setIsOpen(!isOpen)} className="hover:bg-accent p-1 rounded">
-            <Menu size={20} />
+            <Menu width={20} height={20} />
           </button>
           <div className="flex-1 font-medium">Page Title</div>
         </header>
